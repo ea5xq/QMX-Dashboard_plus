@@ -151,7 +151,7 @@ Set commands (`FA`, `FB`, `MD`, `FR`, `RT`, `SP`, `TX`, `RX`, `AG0`, `RG`, `KS`)
 ## 🪪 Credits
 
 - **Original dashboard**: [Paul Harrison · G4ADF / DJ0CU](https://github.com/Sparks72/QMX-Dashboard) — Fehmarn Island, Germany
-- **Plus fork**: Juan · EA5XQ — developed with AI assistance (Claude, Anthropic)
+- **Plus fork**: Juan · EA5XQ 
 - **Radio**: QRP Labs QMX — [qrp-labs.com](https://www.qrp-labs.com)
 - **CAT reference**: QMX CAT Programming Manual, firmware 1.03 — Hans Summers, QRP Labs
 
