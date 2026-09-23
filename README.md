@@ -54,9 +54,9 @@ This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks7
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Requirements
 
-**[https://ea5xq.github.io/QMX-Dashboard_plus/](https://ea5xq.github.io/QMX-Dashboard_plus/)**
+**QMX-Dashboard_plus**
 
 > **Requirements:**
 > - Google Chrome or Microsoft Edge (desktop) — Firefox does not support Web Serial API
@@ -75,7 +75,7 @@ This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks7
 
 ## 🔌 Connecting
 
-1. Open the [Live Demo](https://ea5xq.github.io/QMX-Dashboard_plus/) in Chrome or Edge.
+1. Open the index.html in Chrome or Edge.
 2. Plug your QMX into a USB port (USB-C).
 3. Click **Connect Radio** — the browser serial port picker appears.
 4. Select the QMX port (`/dev/cu.usbserial-*` on macOS, `COMx` on Windows) and click **Connect**.
