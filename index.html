@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QMX Health Dashboard  V27</title>
+<title>QMX Health Dashboard v27	</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -294,29 +294,6 @@ canvas.gauge {
 .vfo-chip.clk:hover { border-color: var(--glow); color: var(--text); background: var(--bg); }
 .vfo-chip.clk:active { transform: translateY(1px); }
 .vfo-chip.tx-chip.active { border-color: var(--err); color: var(--err); }
-
-/* ── Band-change buttons ── */
-.band-row {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-.band-btn {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  padding: 3px 9px;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: var(--text2);
-  cursor: pointer;
-  user-select: none;
-  transition: border-color .12s, color .12s, background .12s, transform .05s;
-}
-.band-btn:hover { border-color: var(--glow); color: var(--text); background: var(--bg); }
-.band-btn:active { transform: translateY(1px); }
-.band-btn.active { border-color: var(--glow); color: var(--glow); }
 
 /* ── Clock card ── */
 .card.clock-card { grid-column: span 1; }
@@ -621,13 +598,59 @@ input[type=range].boost-slider::-moz-range-thumb {
   .card.vfo-card, .card.signal-card, .card.status-card { grid-column: span 2; }
   .status-grid { grid-template-columns: repeat(3,1fr); }
 }
+
+/* ── Extra panels below main grid ── */
+.extra-panels {
+  padding: 0 24px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+/* ── CW Decoder ── */
+.cw-output {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 15px;
+  color: var(--glow);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  min-height: 68px;
+  max-height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-all;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+}
+.cw-meta { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.cw-badge { font-family: 'Share Tech Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--border2); color: var(--muted); }
+.cw-badge.tx { border-color: var(--err); color: var(--err); }
+.cw-clear-btn { margin-left: auto; background: transparent; border: 1px solid var(--border2); color: var(--text2); font-size: 11px; padding: 3px 10px; border-radius: 4px; cursor: pointer; font-family: inherit; }
+.cw-clear-btn:hover { border-color: var(--glow); color: var(--text); }
+/* ── Config Explorer ── */
+.cfg-toolbar { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.cfg-path-input { flex: 1; min-width: 200px; background: var(--bg2); border: 1px solid var(--border2); color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 12px; padding: 5px 10px; border-radius: 4px; outline: none; }
+.cfg-path-input:focus { border-color: var(--glow); }
+.cfg-btn { background: var(--bg2); border: 1px solid var(--border2); color: var(--text2); font-family: inherit; font-size: 12px; padding: 5px 12px; border-radius: 4px; cursor: pointer; white-space: nowrap; }
+.cfg-btn:hover { border-color: var(--glow); color: var(--text); }
+.cfg-btn.primary { border-color: var(--glow); color: var(--glow); }
+.cfg-result { margin-top: 10px; font-family: 'Share Tech Mono', monospace; font-size: 13px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px; min-height: 40px; color: var(--text); white-space: pre-wrap; word-break: break-all; }
+.cfg-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cfg-preset-btn { background: var(--bg2); border: 1px solid var(--border2); color: var(--text2); font-family: 'Share Tech Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 3px; cursor: pointer; letter-spacing: 0.04em; }
+.cfg-preset-btn:hover { border-color: var(--glow); color: var(--glow); }
+.cfg-note { font-size: 9px; color: var(--dim); margin-top: 4px; letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
 
 <header>
   <span class="logo">QMX</span>
-  <span class="header-title">Health Dashboard V27</span>
+  <span class="header-title">Health Dashboard Plus v1</span>
   <div class="header-right">
     <select class="interval-sel" id="interval-sel" title="Update interval">
       <option value="500">500 ms</option>
@@ -645,7 +668,7 @@ input[type=range].boost-slider::-moz-range-thumb {
       </select>
     </div>
     <button class="theme-btn" id="theme-btn" title="Toggle theme">☀</button>
-    <span class="callsign">G4ADF · DJ0CU</span>
+    <span class="callsign">EA5XQ forked from G4ADF · DJ0CU</span>
   </div>
 </header>
 
@@ -670,13 +693,12 @@ input[type=range].boost-slider::-moz-range-thumb {
     <div class="vfo-freq" id="vfo-freq">— — —</div>
     <div class="vfo-meta">
       <span class="vfo-chip clk" id="chip-vfosel" data-vfo="A" title="Click: select VFO A / B">VFO A</span>
-     <span class="vfo-chip clk" id="chip-mode" title="Click: cycle CW → FSK → CW-R → FSK-R → LSB → USB">—</span>
+      <span class="vfo-chip clk" id="chip-mode" title="Click: cycle CW → FSK → CW-R → FSK-R">—</span>
       <span class="vfo-chip" id="chip-vfob">VFO B: —</span>
       <span class="vfo-chip clk" id="chip-rit" title="Click: toggle RIT on / off">RIT: OFF</span>
       <span class="vfo-chip clk" id="chip-split" title="Click: toggle Split / Simplex">Simplex</span>
       <span class="vfo-chip clk tx-chip" id="chip-tx" title="Click: key TX / return to RX">RX</span>
     </div>
-    <div class="band-row" id="band-row" title="Click a band to QSY the active VFO"></div>
   </div>
 
   <!-- Clock -->
@@ -795,6 +817,11 @@ input[type=range].boost-slider::-moz-range-thumb {
         <option value="">— select audio input —</option>
       </select>
     </div>
+    <div id="audio-active-banner" style="display:none;margin-top:6px;padding:4px 8px;
+         background:color-mix(in srgb,var(--good) 10%,transparent);
+         border:1px solid var(--good);border-radius:4px;
+         font-size:11px;color:var(--good);font-family:'Share Tech Mono',monospace;
+         white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
     <div class="boost-wrap">
       <div class="boost-head">
         <span class="card-unit">Sound Boost</span>
@@ -842,6 +869,53 @@ input[type=range].boost-slider::-moz-range-thumb {
 
 </div><!-- /dashboard -->
 
+<!-- ═══ EXTRA PANELS ═══ -->
+<div class="extra-panels">
+
+  <!-- CW Decoder -->
+  <div class="card" id="cw-card">
+    <div class="card-label">CW Decoder · TB buffer</div>
+    <div class="cw-output" id="cw-output">— not connected —</div>
+    <div class="cw-meta">
+      <span class="cw-badge" id="cw-tx-badge">RX</span>
+      <span class="cw-badge" id="cw-buf-badge">chars: 0</span>
+      <button class="cw-clear-btn" onclick="document.getElementById('cw-output').textContent=''">Clear</button>
+    </div>
+    <div class="cfg-note" style="margin-top:6px">Requires active CW mode. The QMX decodes received CW and sends it via TB;.</div>
+  </div>
+
+  <!-- Config Explorer (MM / ML) — read-only -->
+  <div class="card" id="cfg-card">
+    <div class="card-label">Config Explorer · MM / ML menu manager (read-only)</div>
+    <div class="cfg-toolbar">
+      <input class="cfg-path-input" id="cfg-path" placeholder="e.g. Audio|AGC settings|Threshold S" value="">
+      <button class="cfg-btn primary" id="cfg-get-btn">GET</button>
+      <button class="cfg-btn" id="cfg-discover-btn">Discover ?</button>
+      <button class="cfg-btn" id="cfg-list-btn">ML (list)</button>
+      <button class="cfg-btn" id="cfg-scan-btn" title="Scans the real root menu names from the QMX">🔍 Scan tree</button>
+    </div>
+    <div class="cfg-result" id="cfg-result">—</div>
+    <div class="cfg-presets">
+      <span style="font-size:10px;color:var(--muted);align-self:center">Quick access:</span>
+      <button class="cfg-preset-btn" data-path="Protection|Max. PA voltage">Max PA V</button>
+      <button class="cfg-preset-btn" data-path="CW|CW Keyer|Keyer mode">Keyer mode</button>
+      <button class="cfg-preset-btn" data-path="CW|CW Keyer|Keyer speed">Keyer speed</button>
+      <button class="cfg-preset-btn" data-path="Audio|AGC settings|Threshold S">AGC Threshold</button>
+      <button class="cfg-preset-btn" data-path="Audio|AGC settings|Hold time">AGC Hold</button>
+      <button class="cfg-preset-btn" data-path="CW|Choose filters|0">CW filter 50Hz</button>
+      <button class="cfg-preset-btn" data-path="Band config.|RF gain (db)[3]">RF gain 40m</button>
+      <button class="cfg-preset-btn" data-path="Band config.|RF gain (db)[4]">RF gain 30m</button>
+      <button class="cfg-preset-btn" data-path="Band config.|RF gain (db)[5]">RF gain 20m</button>
+      <button class="cfg-preset-btn" data-path="System config|CAT timeout">CAT timeout</button>
+      <button class="cfg-preset-btn" data-path="0">Discover root [0]</button>
+      <button class="cfg-preset-btn" data-path="1">Discover root [1]</button>
+      <button class="cfg-preset-btn" data-path="2">Discover root [2]</button>
+    </div>
+    <div class="cfg-note">MM GET reads the QMX menu tree. Use Scan tree first to discover real menu names for your firmware.</div>
+  </div>
+
+</div><!-- /extra-panels -->
+
 <div id="toast"></div>
 
 <script>
@@ -874,7 +948,7 @@ setTheme(savedTheme);
 // ═══════════════════════════════════════════
 //  SERIAL
 // ═══════════════════════════════════════════
-let port=null, reader=null, rxBuf='', rxResolve=null, rxReject=null, rxTimer=null, closing=false;
+let port=null, reader=null, rxBuf='', rxResolve=null, rxReject=null, rxTimer=null, rxExpect=null, closing=false;
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms))}
 class CatError extends Error{constructor(cmd){super('?; from '+cmd);this.catError=true}}
@@ -884,9 +958,10 @@ async function sendCAT(cmd,waitResp=true,ms=200){
   const w=port.writable.getWriter();
   try{await w.write(new TextEncoder().encode(cmd))}finally{w.releaseLock()}
   if(!waitResp)return'';
+  rxExpect=cmd.slice(0,2).replace(';','');
   return new Promise((resolve,reject)=>{
     rxResolve=resolve;rxReject=reject;
-    rxTimer=setTimeout(()=>{if(rxResolve){rxResolve=null;rxReject=null;resolve('')}},ms);
+    rxTimer=setTimeout(()=>{if(rxResolve){rxExpect=null;rxResolve=null;rxReject=null;resolve('')}},ms);
   });
 }
 
@@ -908,14 +983,16 @@ async function startReader(){
           const{value,done}=await reader.read();
           if(done||closing)break;
           rxBuf+=dec.decode(value);
+          if(rxBuf.length>1024)rxBuf=rxBuf.slice(-512); // overflow guard
           if(rxResolve&&rxBuf.includes(';')){
             const si=rxBuf.indexOf(';');
             const resp=rxBuf.slice(0,si+1);
-            const ok=/^(FA|FB|FR|FT|MD|KS|AG|RG|SP|RT|IF|ID|VN|OM|PC|SW|SM|SA|TQ|TM|FW|\?)/.test(resp);
+            const ok=rxExpect ? resp.startsWith(rxExpect)||resp.startsWith('?')
+                              : /^(FA|FB|FR|FT|MD|KS|AG|RG|SP|RT|IF|ID|VN|OM|PC|SW|SM|SA|TQ|TM|FW|\?)/.test(resp);
             if(ok){
               rxBuf=rxBuf.slice(si+1);
               if(rxTimer){clearTimeout(rxTimer);rxTimer=null}
-              const res=rxResolve;rxResolve=null;rxReject=null;res(resp);
+              const res=rxResolve;rxResolve=null;rxReject=null;rxExpect=null;res(resp);
             }else{rxBuf=rxBuf.slice(si+1)}
           }
         }
@@ -1184,8 +1261,11 @@ async function pollOnce(){
       const tuningActive = !!tDrag || (performance.now() - lastLocalTuneMs < TUNE_LOCK_MS);
       const dispHz = tuningActive ? currentFreqHz : (parseInt(freq) || currentFreqHz);
       if (!tuningActive) currentFreqHz = dispHz;
-      setFreqDisplays(dispHz);
+      const fStr = formatFreq(dispHz);
+      document.getElementById('vfo-freq').textContent=fStr;
+      const kf=document.getElementById('vfo-freq-knob');if(kf)kf.textContent=fStr;
       drawTuneKnob();
+      document.getElementById('s-freq')&&(document.getElementById('s-freq').textContent=fStr);
 
       const modeStr=MODE_MAP[modeChar]||modeChar;
       document.getElementById('chip-mode').textContent=modeStr;
@@ -1230,82 +1310,119 @@ async function pollOnce(){
     const sm=await safecat('SM;');
     if(sm){
       const v=parseInt(sm.replace('SM',''));
-      document.getElementById('val-sm').textContent=v;
-      const pct=smToPercent(v);
-      document.getElementById('s-fill').style.width=pct+'%';
-      pushSpark('sm',v);
-      drawSpark('spark-sm',sparkData.sm);
+      if(!isNaN(v)){
+        document.getElementById('val-sm').textContent=v;
+        const pct=smToPercent(v);
+        document.getElementById('s-fill').style.width=pct+'%';
+        pushSpark('sm',v);
+        drawSpark('spark-sm',sparkData.sm);
+      }
     }
 
     // AGC
     const sa=await safecat('SA;');
     if(sa){
       const v=parseInt(sa.replace('SA',''));
-      document.getElementById('val-agc').textContent=v;
+      if(!isNaN(v)) document.getElementById('val-agc').textContent=v;
     }
 
-    // SWR (only meaningful in TX, show last known otherwise)
+    // SWR (only meaningful in TX; SW; in RX returns bare 'SW' with no value)
     const sw=await safecat('SW;');
     if(sw&&sw!=='SW'){
       const v=parseInt(sw.replace('SW',''));
-      lastSWR=v;
-      const swr=v/100;
-      document.getElementById('val-swr').textContent=swr.toFixed(2);
-      const swrEl=document.getElementById('val-swr');
-      swrEl.className='card-value'+(swr<1.5?' good':swr<2.5?' warn':' err');
-      drawGauge('gauge-swr',swr,1,3.5,['#39ff14','#f0c030','#ff4d4d'],getSWRLabel);
-      pushSpark('swr',swr);
-      drawSpark('spark-swr',sparkData.swr);
+      if(!isNaN(v)){
+        lastSWR=v;
+        const swr=v/100;
+        document.getElementById('val-swr').textContent=swr.toFixed(2);
+        const swrEl=document.getElementById('val-swr');
+        swrEl.className='card-value'+(swr<1.5?' good':swr<2.5?' warn':' err');
+        drawGauge('gauge-swr',swr,1,3.5,['#39ff14','#f0c030','#ff4d4d'],getSWRLabel);
+        pushSpark('swr',swr);
+        drawSpark('spark-swr',sparkData.swr);
+      }
     }
 
-    // Power
+    // Power (PC; returns tenths of a watt: PC45 = 4.5 W)
     const pc=await safecat('PC;');
     if(pc){
       const v=parseInt(pc.replace('PC',''));
-      lastPWR=v;
-      const pwr=v/10;
-      document.getElementById('val-pwr').textContent=pwr.toFixed(1);
-      drawGauge('gauge-pwr',pwr,0,10,['#39ff14','#f0c030','#ff4d4d'],getPWRLabel);
-      pushSpark('pwr',pwr);
-      drawSpark('spark-pwr',sparkData.pwr);
+      if(!isNaN(v)){
+        lastPWR=v;
+        const pwr=v/10;
+        document.getElementById('val-pwr').textContent=pwr.toFixed(1);
+        drawGauge('gauge-pwr',pwr,0,10,['#39ff14','#f0c030','#ff4d4d'],getPWRLabel);
+        pushSpark('pwr',pwr);
+        drawSpark('spark-pwr',sparkData.pwr);
+      }
     }
 
-    // AF gain
+    // AF gain — AG0; returns raw steps (0-799), each = 0.25 dB
     const ag=await safecat('AG0;');
     if(ag){
       const v=parseInt(ag.replace('AG0',''));
-      document.getElementById('val-ag').textContent=v;
-      syncKnobFromPoll('ag',v);
-      pushSpark('ag',v);
-      drawSpark('spark-ag',sparkData.ag);
+      if(!isNaN(v)){
+        document.getElementById('val-ag').textContent=(v*0.25).toFixed(1)+' dB';
+        syncKnobFromPoll('ag',v);
+        pushSpark('ag',v);
+        drawSpark('spark-ag',sparkData.ag);
+      }
     }
 
     // RF gain
     const rg=await safecat('RG;');
     if(rg){
       const v=parseInt(rg.replace('RG',''));
-      document.getElementById('val-rg').textContent=v;
-      syncKnobFromPoll('rg',v);
-      pushSpark('rg',v);
-      drawSpark('spark-rg',sparkData.rg);
+      if(!isNaN(v)){
+        document.getElementById('val-rg').textContent=v;
+        syncKnobFromPoll('rg',v);
+        pushSpark('rg',v);
+        drawSpark('spark-rg',sparkData.rg);
+      }
     }
 
     // Keyer speed
     const ks=await safecat('KS;');
     if(ks){
       const v=parseInt(ks.replace('KS',''));
-      document.getElementById('val-ks').textContent=v;
-      syncKnobFromPoll('ks',v);
-      pushSpark('ks',v);
-      drawSpark('spark-ks',sparkData.ks);
+      if(!isNaN(v)){
+        document.getElementById('val-ks').textContent=v;
+        syncKnobFromPoll('ks',v);
+        pushSpark('ks',v);
+        drawSpark('spark-ks',sparkData.ks);
+      }
     }
 
     // Filter bandwidth
     const fw=await safecat('FW;');
     if(fw){
       const v=parseInt(fw.replace('FW',''));
-      document.getElementById('st-fw').textContent=v+'Hz';
+      if(!isNaN(v)) document.getElementById('st-fw').textContent=v+' Hz';
     }
+
+    // CW Decoder — TB; (40-char buffer, clears on read)
+    try {
+      const tb=await safecat('TB;',300);
+      if(tb&&tb.startsWith('TB')){
+        const txCh=tb[2]||'0';
+        const nn=parseInt(tb.slice(3,5))||0;
+        const decoded=tb.slice(5,5+nn);
+        const badge=document.getElementById('cw-tx-badge');
+        const bufBadge=document.getElementById('cw-buf-badge');
+        if(badge){ badge.textContent=txCh!=='0'?'TX':'RX'; badge.className='cw-badge'+(txCh!=='0'?' tx':''); }
+        if(bufBadge) bufBadge.textContent='chars: '+nn;
+        if(nn>0&&decoded){
+          const out=document.getElementById('cw-output');
+          if(out){
+            if(out.textContent==='— waiting for CW signal —') out.textContent='';
+            out.textContent+=decoded;
+            out.scrollTop=out.scrollHeight;
+          }
+        } else {
+          const out=document.getElementById('cw-output');
+          if(out&&out.textContent==='— not connected —') out.textContent='— waiting for CW signal —';
+        }
+      }
+    } catch(e) { /* non-critical */ }
 
     // Clock from QMX
     const tm=await safecat('TM;');
@@ -1408,7 +1525,7 @@ function drawKnob(svgId, value, min, max, color) {
 
 // ── Knob state ──────────────────────────────────────────────────────────────
 const knobs = {
-  ag: { min:0,  max:255, step:1,  value:128, cmd: v => `AG0${String(v).padStart(3,'0')};`, svgId:'knob-svg-ag', valId:'val-ag' },
+  ag: { min:0,  max:799, step:1,  value:128, cmd: v => `AG0${String(v).padStart(3,'0')};`, svgId:'knob-svg-ag', valId:'val-ag' },
   rg: { min:0,  max:255, step:1,  value:128, cmd: v => `RG${String(v).padStart(3,'0')};`,  svgId:'knob-svg-rg', valId:'val-rg' },
   ks: { min:5,  max:60,  step:1,  value:20,  cmd: v => `KS${String(v).padStart(3,'0')};`,  svgId:'knob-svg-ks', valId:'val-ks' },
 };
@@ -1446,7 +1563,12 @@ function updateKnobDisplay(k) {
   const cfg = knobs[k];
   drawKnob(cfg.svgId, cfg.value, cfg.min, cfg.max);
   const el = document.getElementById(cfg.valId);
-  if (el) el.textContent = cfg.value;
+  if (!el) return;
+  if (k === 'ag') {
+    el.textContent = (cfg.value * 0.25).toFixed(1) + ' dB';
+  } else {
+    el.textContent = cfg.value;
+  }
 }
 
 async function setKnob(k, newVal) {
@@ -1472,17 +1594,6 @@ function drawTuneKnob() {
   if (knob) knob.style.transform = `rotate(${tuneRotDeg}deg)`;
 }
 
-// Update EVERY frequency readout together so the big operating display tracks
-// the knob dial 1:1 during a live tune (previously only the knob readout moved
-// between polls, so the operating readout lagged / stepped at the poll rate).
-function setFreqDisplays(hz) {
-  const s = formatFreq(hz);
-  const big  = document.getElementById('vfo-freq');       if (big)  big.textContent  = s;
-  const knob = document.getElementById('vfo-freq-knob');  if (knob) knob.textContent = s;
-  const sf   = document.getElementById('s-freq');         if (sf)   sf.textContent   = s;
-  highlightBand(hz);
-}
-
 async function tuneBy(deltaHz) {
   if (!port || !currentFreqHz) return;
   const newFreq = Math.max(1000000, currentFreqHz + deltaHz);
@@ -1490,7 +1601,8 @@ async function tuneBy(deltaHz) {
   try {
     await cat(cmd, false, 150);
     currentFreqHz = newFreq;
-    setFreqDisplays(newFreq);
+    const el = document.getElementById('vfo-freq-knob');
+    if (el) el.textContent = formatFreq(newFreq);
     drawTuneKnob();
   } catch(e) {}
 }
@@ -1675,7 +1787,7 @@ function _flushSetCAT(){
 // ── Clickable operating-frequency chips ─────────────────────────────────────
 // Each click sends one CAT set command and updates the chip optimistically;
 // the next poll confirms (or reverts) from the rig's actual state.
-const MODE_CYCLE=[3,6,7,9,1,2]; // CW, FSK, CW-R, FSK-R, LSB, USB (QMX MD set values)
+const MODE_CYCLE=[3,6,7,9]; // CW, FSK, CW-R, FSK-R (QMX MD set values)
 
 function wireFreqBox(){
   const mode=document.getElementById('chip-mode');
@@ -1778,7 +1890,8 @@ function nudgeTune(deltaHz) {
   if (TUNE_STEP_HZ > 1) currentFreqHz = Math.round(currentFreqHz / TUNE_STEP_HZ) * TUNE_STEP_HZ;
   lastLocalTuneMs = performance.now();
   tuneRotDeg += deltaHz / 100; // 1° per 100 Hz visual rotation
-  setFreqDisplays(currentFreqHz);
+  const el = document.getElementById('vfo-freq-knob');
+  if (el) el.textContent = formatFreq(currentFreqHz);
   drawTuneKnob();
   if (port) sendTuneCAT(currentFreqHz);
 }
@@ -1832,6 +1945,7 @@ function tuneMouseMove(e) {
 
   // Needle hugs the cursor
   tuneRotDeg = ang + 90;
+  const el = document.getElementById('vfo-freq-knob');
 
   // Angular speed → Hz-per-degree, blended along a power curve
   const v    = Math.abs(dAng) / dt;                 // deg/sec
@@ -1852,7 +1966,7 @@ function tuneMouseMove(e) {
     currentFreqHz = Math.max(1000000, currentFreqHz + whole);
     if (TUNE_STEP_HZ > 1) currentFreqHz = Math.round(currentFreqHz / TUNE_STEP_HZ) * TUNE_STEP_HZ;
     lastLocalTuneMs = performance.now();
-    setFreqDisplays(currentFreqHz);
+    if (el) el.textContent = formatFreq(currentFreqHz);
     if (port) sendTuneCAT(currentFreqHz);
   }
   drawTuneKnob();
@@ -1901,55 +2015,6 @@ if (tuneCard) {
     nudgeTune(e.key === 'ArrowUp' ? step : -step);
   });
 }
-
-// ── Band-change buttons ─────────────────────────────────────────────────────
-// hz = QSY target (CW/QRP-friendly spots); lo/hi = band edges for the active
-// highlight. Trim this list to the bands your QMX actually covers.
-const BANDS = [
-  { name:'160m', hz: 1836000, lo: 1810000, hi: 2000000 },
-  { name:'80m',  hz: 3560000, lo: 3500000, hi: 3800000 },
-  { name:'60m',  hz: 5354000, lo: 5250000, hi: 5450000 },
-  { name:'40m',  hz: 7030000, lo: 7000000, hi: 7200000 },
-  { name:'30m',  hz:10116000, lo:10100000, hi:10150000 },
-  { name:'20m',  hz:14060000, lo:14000000, hi:14350000 },
-  { name:'17m',  hz:18096000, lo:18068000, hi:18168000 },
-  { name:'15m',  hz:21060000, lo:21000000, hi:21450000 },
-  { name:'12m',  hz:24906000, lo:24890000, hi:24990000 },
-  { name:'10m',  hz:28060000, lo:28000000, hi:29700000 },
-];
-
-function qsyBand(hz) {
-  currentFreqHz = hz;
-  lastLocalTuneMs = performance.now();  // hold off the poll read-back briefly
-  setFreqDisplays(hz);                  // also refreshes the band highlight
-  drawTuneKnob();
-  if (port) sendTuneCAT(hz);            // writes to the active VFO (A or B)
-}
-
-function highlightBand(hz) {
-  const row = document.getElementById('band-row');
-  if (!row) return;
-  row.querySelectorAll('.band-btn').forEach(el => {
-    const lo = +el.dataset.lo, hi = +el.dataset.hi;
-    el.classList.toggle('active', hz >= lo && hz <= hi);
-  });
-}
-
-function buildBandRow() {
-  const row = document.getElementById('band-row');
-  if (!row) return;
-  row.innerHTML = '';
-  BANDS.forEach(b => {
-    const el = document.createElement('span');
-    el.className = 'band-btn';
-    el.textContent = b.name;
-    el.dataset.hz = b.hz; el.dataset.lo = b.lo; el.dataset.hi = b.hi;
-    el.title = 'QSY to ' + (b.hz / 1e6).toFixed(3) + ' MHz';
-    el.addEventListener('click', () => qsyBand(b.hz));
-    row.appendChild(el);
-  });
-}
-buildBandRow();
 
 // ── Sync knob values from poll data ────────────────────────────────────────
 // Patch into pollOnce: after each AG/RG/KS read, sync the knob silently
@@ -2026,6 +2091,12 @@ async function startAudio() {
     audioRunning = true;
     audioToggle.textContent = '■ Disable';
     audioToggle.classList.add('active');
+    const banner = document.getElementById('audio-active-banner');
+    if (banner) {
+      const selEl = document.getElementById('audio-dev');
+      banner.textContent = '▶ ' + (selEl.options[selEl.selectedIndex]?.text || 'Unknown device');
+      banner.style.display = 'block';
+    }
     toast('Audio monitor on');
     runVU();
   } catch (e) {
@@ -2044,6 +2115,8 @@ function stopAudio() {
   audioCtx = audioStream = audioSource = gainNode = analyser = null;
   audioToggle.textContent = '▶ Enable';
   audioToggle.classList.remove('active');
+  const banner = document.getElementById('audio-active-banner');
+  if (banner) banner.style.display = 'none';
   vuFill.style.width = '0%';
 }
 
@@ -2083,6 +2156,82 @@ if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
   navigator.mediaDevices.addEventListener &&
     navigator.mediaDevices.addEventListener('devicechange', listAudioInputs);
 }
+
+// ═══════════════════════════════════════════
+//  CONFIG EXPLORER — MM / ML (read-only)
+// ═══════════════════════════════════════════
+try {
+  const cfgPath   = document.getElementById('cfg-path');
+  const cfgResult = document.getElementById('cfg-result');
+
+  function cfgShow(msg, isErr=false) {
+    if (!cfgResult) return;
+    cfgResult.textContent = msg;
+    cfgResult.style.color = isErr ? 'var(--err)' : 'var(--text)';
+  }
+  function cfgRequirePort() {
+    if (!port) { cfgShow('⚠ Not connected to radio', true); return false; }
+    return true;
+  }
+
+  const cfgGetBtn = document.getElementById('cfg-get-btn');
+  if (cfgGetBtn) cfgGetBtn.addEventListener('click', async () => {
+    if (!cfgRequirePort()) return;
+    const p = cfgPath.value.trim();
+    if (!p) { cfgShow('Enter a menu path', true); return; }
+    cfgShow('Querying…');
+    const r = await safecat('MM' + p + ';', 600);
+    cfgShow(r || '? (no response or command not recognised)', !r);
+  });
+
+  const cfgDiscoverBtn = document.getElementById('cfg-discover-btn');
+  if (cfgDiscoverBtn) cfgDiscoverBtn.addEventListener('click', async () => {
+    if (!cfgRequirePort()) return;
+    const p = cfgPath.value.trim();
+    if (!p) { cfgShow('Enter a menu path or index (e.g. 0, CW|0, CW|CW Keyer|0)', true); return; }
+    cfgShow('Discovering…');
+    const r = await safecat('MM' + p + '?;', 600);
+    cfgShow(r || '? (no response)', !r);
+  });
+
+  const cfgListBtn = document.getElementById('cfg-list-btn');
+  if (cfgListBtn) cfgListBtn.addEventListener('click', async () => {
+    if (!cfgRequirePort()) return;
+    const p = cfgPath.value.trim();
+    if (!p) { cfgShow('Enter the list type number (obtained from Discover)', true); return; }
+    cfgShow('Listing…');
+    const r = await safecat('ML' + p + ';', 600);
+    if (r) {
+      const items = r.replace(/^ML/,'').replace(/;$/,'').split('|');
+      cfgShow('Available values:\n' + items.map((v,i)=>`  [${i}] ${v}`).join('\n'));
+    } else {
+      cfgShow('? (no response — is the path a list type number?)', true);
+    }
+  });
+
+  const cfgScanBtn = document.getElementById('cfg-scan-btn');
+  if (cfgScanBtn) cfgScanBtn.addEventListener('click', async () => {
+    if (!cfgRequirePort()) return;
+    cfgShow('Scanning root menu tree…');
+    const lines = ['── QMX root menu tree (MM discovery) ──'];
+    const typeMap = {'0':'submenu','1':'action','2':'string','3':'number','4':'byte','5':'list','6':'info','7':'mask'};
+    for (let i = 0; i < 20; i++) {
+      const r = await safecat(`MM${i}?;`, 400);
+      if (!r || r.startsWith('?')) break;
+      const body = r.replace(/^MM/,'').replace(/;$/,'');
+      const parts = body.split('|');
+      const name = parts.slice(2).join('|') || body;
+      lines.push(`  [${i}] ${name}  (${typeMap[parts[0]]||parts[0]})`);
+    }
+    cfgShow(lines.join('\n'));
+  });
+
+  // Preset buttons — fill path only, user presses GET manually
+  document.querySelectorAll('.cfg-preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => { if (cfgPath) cfgPath.value = btn.dataset.path; });
+  });
+
+} catch(e) { console.warn('Config Explorer init error:', e); }
 
 </script>
 </body>
