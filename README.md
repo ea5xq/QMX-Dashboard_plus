@@ -5,7 +5,7 @@
 
 This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks72/QMX-Dashboard) by **Paul Harrison · G4ADF / DJ0CU**, extended with additional monitoring and diagnostic features.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?style=for-the-badge)](https://ja-bertolin.github.io/QMX-Dashboard_plus/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?style=for-the-badge)](https://ea5xq.github.io/QMX-Dashboard_plus/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Web Serial API](https://img.shields.io/badge/Requires-Chrome%20%2F%20Edge-orange?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API)
 [![Fork of](https://img.shields.io/badge/Fork%20of-Sparks72%2FQMX--Dashboard-lightgrey?style=for-the-badge)](https://github.com/Sparks72/QMX-Dashboard)
@@ -56,7 +56,7 @@ This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks7
 
 ## 🚀 Live Demo
 
-**[https://ja-bertolin.github.io/QMX-Dashboard_plus/](https://ja-bertolin.github.io/QMX-Dashboard_plus/)**
+**[https://ea5xq.github.io/QMX-Dashboard_plus/](https://ea5xq.github.io/QMX-Dashboard_plus/)**
 
 > **Requirements:**
 > - Google Chrome or Microsoft Edge (desktop) — Firefox does not support Web Serial API
@@ -75,7 +75,7 @@ This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks7
 
 ## 🔌 Connecting
 
-1. Open the [Live Demo](https://ja-bertolin.github.io/QMX-Dashboard_plus/) in Chrome or Edge.
+1. Open the [Live Demo](https://ea5xq.github.io/QMX-Dashboard_plus/) in Chrome or Edge.
 2. Plug your QMX into a USB port (USB-C).
 3. Click **Connect Radio** — the browser serial port picker appears.
 4. Select the QMX port (`/dev/cu.usbserial-*` on macOS, `COMx` on Windows) and click **Connect**.
@@ -88,7 +88,7 @@ This is a fork of the original [QMX Health Dashboard](https://github.com/Sparks7
 Single self-contained HTML file — no build step required:
 
 ```bash
-git clone https://github.com/ja-Bertolin/QMX-Dashboard_plus.git
+git clone https://github.com/ea5xq/QMX-Dashboard_plus.git
 cd QMX-Dashboard_plus
 # Open index.html in Chrome or Edge
 # file:// works for Web Serial — no server needed
